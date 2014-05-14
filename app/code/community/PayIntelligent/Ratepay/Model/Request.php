@@ -466,7 +466,7 @@ class PayIntelligent_Ratepay_Model_Request extends Mage_Core_Model_Abstract
         $customer->addChild('date-of-birth', $customerInfo['dob']);
         $customer->addChild('ip-address', $customerInfo['ip']);
         if($customerInfo['company'] != '') {
-            $customer->addCDataChild('company', $customerInfo['company']);
+            $customer->addCDataChild('company-name', $customerInfo['company']);
             $customer->addChild('vat-id', $customerInfo['vatId']);
         }
 
