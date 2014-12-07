@@ -230,83 +230,6 @@ class PayIntelligent_Ratepay_Model_Observer
 
                 $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_success', 'success')->save();
 
-                // create invoice for whole order, ship whole order and send confirmation deliver
-                if (true === $order->canInvoice()) {
-                    $invoice = $order->prepareInvoice();
-
-                    if (!$invoice->getTotalQty()) {
-                        Mage::throwException(Mage::helper('core')->__('Cannot create an invoice without products.'));
-                    }
-
-                    $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE);
-                    $invoice->register();
-                    $invoice->getOrder()->setCustomerNoteNotify(true);
-                    $invoice->getOrder()->setIsInProcess(true);
-                    // send invoice mail
-                    $invoice->sendEmail();
-
-                    Mage::getModel('core/resource_transaction')
-                        ->addObject($invoice)
-                        ->addObject($invoice->getOrder())
-                        ->save();
-
-                    Mage::log('RatePAY: Invoice created for order '.$order->getId());
-
-                    //count items, ship them ( cd will be triggered through event observer )
-                    $email          = false;
-                    $includeComment = false;
-                    $comment        = "RatePAY Shipment";
-
-                    $qty = array();
-                    foreach($order->getAllItems() as $eachOrderItem){
-
-                        $Itemqty = null;
-                        $Itemqty = $eachOrderItem->getQtyOrdered()
-                                    - $eachOrderItem->getQtyShipped()
-                                    - $eachOrderItem->getQtyRefunded()
-                                    - $eachOrderItem->getQtyCanceled();
-                        $qty[$eachOrderItem->getId()] = $Itemqty;
-                    }
-
-                    if (true === $order->canShip()) {
-                        $shipment = $order->prepareShipment($qty);
-
-                        if ($shipment) {
-                            $shipment->register();
-                            $shipment->addComment($comment, $email && $includeComment);
-                            $shipment->getOrder()->setIsInProcess(true);
-                            try {
-                                Mage::getModel('core/resource_transaction')
-                                    ->addObject($shipment)
-                                    ->addObject($shipment->getOrder())
-                                    ->save();
-
-                                $shipment->sendEmail($email, ($includeComment ? $comment : ''));
-
-                                Mage::log('RatePAY: Order for given id shipped '.$order->getId());
-
-                            } catch (Mage_Core_Exception $e) {
-                                Mage::throwException($e);
-                            }
-
-                            //confirmation deliver
-                            $helper = Mage::helper('ratepay/mapping');
-
-                            $client = Mage::getSingleton('ratepay/request');
-                            $result = $client->callConfirmationDeliver(
-                                $helper->getRequestHead($order),
-                                $helper->getRequestBasket($invoice),
-                                $helper->getLoggingInfo($order)
-                            );
-
-                            Mage::log('RatePAY: Confirmation Deliver set for '.$order->getId());
-
-                        }
-
-                    }
-
-                }
-
             }
         }
 
@@ -321,25 +244,89 @@ class PayIntelligent_Ratepay_Model_Observer
      */
     public function sendRatepayDeliverCall(Varien_Event_Observer $observer)
     {
-        $client = Mage::getSingleton('ratepay/request');
-        $helper = Mage::helper('ratepay/mapping');
-        $invoice = $observer->getEvent()->getInvoice();
-        $order = $invoice->getOrder();
-        if (Mage::helper('ratepay/payment')->isRatepayPayment($order->getPayment()->getMethod())) {
-            $result = $client->callConfirmationDeliver($helper->getRequestHead($order), $helper->getRequestBasket($invoice), $helper->getLoggingInfo($order));
+        $shipment = $observer->getEvent()->getShipment();
+        $order = $shipment->getOrder();
 
-            if (!$result) {
-                Mage::throwException(Mage::helper('ratepay')->__('Pi Delivery was not successful.'));
+
+        // create invoice for whole order, ship whole order and send confirmation deliver
+        if (true === $order->canInvoice()) {
+            $invoice = $order->prepareInvoice();
+
+            if (!$invoice->getTotalQty()) {
+                Mage::throwException(Mage::helper('core')->__('Cannot create an invoice without products.'));
             }
 
-            //Mage::helper('ratepay/payment')->convertInvoiceToShipment($invoice);
-            Mage::helper('ratepay/payment')->addNewTransaction($order->getPayment(), Mage_Sales_Model_Order_Payment_Transaction::TYPE_CAPTURE, $invoice, true, 'CONFIRMATION_DELIVER SEND (capture)');
-            if (!$order->canInvoice()) {
-                $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_processing', 'success')->save();
-            } else {
-                $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_complete', 'success')->save();
+            $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE);
+            $invoice->register();
+            $invoice->getOrder()->setCustomerNoteNotify(true);
+            $invoice->getOrder()->setIsInProcess(true);
+            // send invoice mail
+            $invoice->sendEmail();
+
+            Mage::getModel('core/resource_transaction')
+                ->addObject($invoice)
+                ->addObject($invoice->getOrder())
+                ->save();
+
+            Mage::log('RatePAY: Invoice created for order '.$order->getId());
+
+            //count items, ship them ( cd will be triggered through event observer )
+            $email          = false;
+            $includeComment = false;
+            $comment        = "RatePAY Shipment";
+
+            $qty = array();
+            foreach($order->getAllItems() as $eachOrderItem){
+
+                $Itemqty = null;
+                $Itemqty = $eachOrderItem->getQtyOrdered()
+                    - $eachOrderItem->getQtyShipped()
+                    - $eachOrderItem->getQtyRefunded()
+                    - $eachOrderItem->getQtyCanceled();
+                $qty[$eachOrderItem->getId()] = $Itemqty;
             }
+
+            if (true === $order->canShip()) {
+                $shipment = $order->prepareShipment($qty);
+
+                if ($shipment) {
+                    $shipment->register();
+                    $shipment->addComment($comment, $email && $includeComment);
+                    $shipment->getOrder()->setIsInProcess(true);
+                    try {
+                        Mage::getModel('core/resource_transaction')
+                            ->addObject($shipment)
+                            ->addObject($shipment->getOrder())
+                            ->save();
+
+                        $shipment->sendEmail($email, ($includeComment ? $comment : ''));
+
+                        Mage::log('RatePAY: Order for given id shipped '.$order->getId());
+
+                    } catch (Mage_Core_Exception $e) {
+                        Mage::throwException($e);
+                    }
+
+                    //confirmation deliver
+                    $helper = Mage::helper('ratepay/mapping');
+
+                    $client = Mage::getSingleton('ratepay/request');
+                    $result = $client->callConfirmationDeliver(
+                        $helper->getRequestHead($order),
+                        $helper->getRequestBasket($invoice),
+                        $helper->getLoggingInfo($order)
+                    );
+
+                    Mage::log('RatePAY: Confirmation Deliver set for '.$order->getId());
+
+                    Mage::helper('ratepay/payment')->addNewTransaction($order->getPayment(), Mage_Sales_Model_Order_Payment_Transaction::TYPE_CAPTURE, $shipment, true, 'CONFIRMATION_DELIVER SEND (capture)');
+                    $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'payment_complete', 'success')->save();
+                }
+
+            }
+
         }
+
     }
 
     /**
@@ -435,18 +422,6 @@ class PayIntelligent_Ratepay_Model_Observer
 
             if (!$result) {
                 Mage::throwException(Mage::helper('ratepay')->__('Pi Cancellation was not successful.'));
-            }
-        }
-    }
-
-    public function isInvoiceCreated(Varien_Event_Observer $observer)
-    {
-        $order = $observer->getEvent()->getShipment()->getOrder();
-        if (Mage::helper('ratepay/payment')->isRatepayPayment($order->getPayment()->getMethod())) {
-            foreach ($observer->getEvent()->getShipment()->getAllItems() as $item) {
-                if ($item->getOrderItem()->getQtyInvoiced() < $item->getQty()) {
-                    Mage::throwException(Mage::helper('ratepay')->__('Pi Please invoice the articles you want to ship.'));
-                }
             }
         }
     }
