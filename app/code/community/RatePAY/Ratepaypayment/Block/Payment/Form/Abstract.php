@@ -182,13 +182,23 @@ class RatePAY_Ratepaypayment_Block_Payment_Form_Abstract extends Mage_Payment_Bl
     }
 
     /**
+     * Returns the privacy policy url
+     *
+     * @return string
+     */
+    public function getPrivacyPolicyUrl()
+    {
+        return Mage::helper('ratepaypayment')->getRpConfigData($this->getQuote(), 'ratepay_directdebit', 'privacy_policy') . "-" . $this->getCountryCode();
+    }
+
+    /**
      * Checks if method is set on Whitelabel mode
      *
      * @return boolean
      */
     public function isWhitelabel()
     {
-        return $this->getMethod()->getConfigData("whitelabel", $this->getQuote()->getStoreId());
+        return Mage::helper('ratepaypayment')->getRpConfigData($this->getQuote(), 'ratepay_general', 'whitelabel', false, true) == 1;
     }
 
     /**
