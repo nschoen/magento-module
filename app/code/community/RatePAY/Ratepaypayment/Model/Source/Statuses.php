@@ -30,11 +30,20 @@ class RatePAY_Ratepaypayment_Model_Source_Statuses
         return $this->_getStatuses(Mage::getModel('sales/order_status')->getResourceCollection()->getData());
     }
 
-    private function _getStatuses($arrStatuses) {
+    private function _getStatuses($arrStatuses)
+    {
         $statuses = array();
 
-        foreach($arrStatuses as $status) {
+        foreach ($arrStatuses as $status) {
             $statuses[$status['status']] = $status['label'];
+        }
+
+        if ($statuses['payment_success']) {
+            $statuses['payment_success'] = 'Payment Success';
+        }
+
+        if (!$statuses['payment_complete']) {
+            $statuses['payment_complete'] = 'Payment Complete';
         }
 
         return $statuses;
