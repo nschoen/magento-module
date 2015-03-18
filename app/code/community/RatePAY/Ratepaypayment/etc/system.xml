@@ -219,9 +219,8 @@
                             <fields>
 
                                 <ratepay_rechnung_de type="group" translate="label comment">
-                                    <label>RatePAY Invoice</label>
+                                    <label>Invoice</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_rechnung</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -432,9 +431,8 @@
                                 </ratepay_rechnung_de>
 
                                 <ratepay_directdebit_de type="group" translate="label comment">
-                                    <label>RatePAY Direct Debit</label>
+                                    <label>ELV</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_directdebit</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -656,9 +654,8 @@
                                     </fields>
                                 </ratepay_directdebit_de>
                                 <ratepay_rate_de type="group" translate="label comment">
-                                    <label>RatePAY Installment</label>
+                                    <label>Installment</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_rate</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -897,9 +894,8 @@
                                 </ratepay_rate_de>
 
                                 <ratepay_ibs_de type="group" translate="label comment">
-                                    <label>RatePAY Integrierte Bezahlsteuerung</label>
+                                    <label>IBS</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_ibs</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -1056,9 +1052,8 @@
                             <fields>
 
                                 <ratepay_rechnung_at type="group" translate="label comment">
-                                    <label>RatePAY Invoice</label>
+                                    <label>Invoice</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_rechnung</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -1262,9 +1257,8 @@
                                 </ratepay_rechnung_at>
 
                                 <ratepay_directdebit_at type="group" translate="label comment">
-                                    <label>RatePAY Direct Debit</label>
+                                    <label>ELV</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_directdebit</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -1486,9 +1480,8 @@
                                     </fields>
                                 </ratepay_directdebit_at>
                                 <ratepay_rate_at type="group" translate="label comment">
-                                    <label>RatePAY Installment</label>
+                                    <label>Installment</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_rate</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
@@ -1727,9 +1720,8 @@
                                 </ratepay_rate_at>
 
                                 <ratepay_ibs_at type="group" translate="label comment">
-                                    <label>RatePAY Integrierte Bezahlsteuerung</label>
+                                    <label>IBS</label>
                                     <frontend_type>text</frontend_type>
-                                    <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_method</frontend_model>
                                     <method>ratepay_ibs</method>
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>

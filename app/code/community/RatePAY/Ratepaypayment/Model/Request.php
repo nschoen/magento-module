@@ -564,7 +564,7 @@ class RatePAY_Ratepaypayment_Model_Request extends Mage_Core_Model_Abstract
             $item = $items->addCDataChild('item', $this->removeSpecialChars($itemInfo['articleName']));
             $item->addAttribute('article-number', $this->removeSpecialChars($itemInfo['articleNumber']));
             $item->addAttribute('quantity', number_format($itemInfo['quantity'], 0, '.', ''));
-            $item->addAttribute('unit-price-gross', number_format(round($itemInfo['totalPriceSingle'],2), 2, ".", ""));
+            $item->addAttribute('unit-price-gross', number_format(round($itemInfo['unitPriceGross'],2), 2, ".", ""));
             $item->addAttribute('tax-rate', number_format($itemInfo['taxPercent'], 0, ".", ""));
         }
     }

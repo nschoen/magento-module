@@ -47,22 +47,20 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
                 $article['articleNumber'] = $orderItem->getSku();
                 $article['articleName'] = $orderItem->getName();
                 $article['quantity'] = ($orderItem instanceof Mage_Sales_Model_Order_Item) ? $orderItem->getQtyOrdered() : $orderItem->getQty();
-                $article['totalPrice'] = $orderItem->getRowTotal();
+                $article['unitPriceGross'] = $orderItem->getPriceInclTax();
                 $article['tax'] = $orderItem->getTaxAmount();
                 $article['taxPercent'] = $orderItem->getTaxPercent();
 
                 if ($object instanceof Mage_Sales_Model_Quote) {
-                    $article['unitPrice'] = $orderItem->getCalculationPrice();
+                    $article['unitPriceNett'] = $orderItem->getCalculationPrice();
                 } else {
-                    $article['unitPrice'] = $orderItem->getPrice(); // netto
+                    $article['unitPriceNett'] = $orderItem->getPrice(); // netto
                 }
 
                 ################################################
-                // Workaround in case of missing tax calculation
-                if ($article['totalPrice'] == ($article['unitPrice'] * $article['quantity'])) {
-                    $article['tax'] = $article['totalPrice'] * ($article['taxPercent'] / 100);
-                    $article['totalPriceSingle'] = $article['totalPrice'] / $article['quantity'];
-                    $article['unitPrice'] = ($article['totalPrice'] - $article['tax']) / $article['quantity'];
+                // Handling in case of missing tax calculation
+                if ($article['unitPriceGross'] == $article['unitPriceNett'] && $orderItem->getTaxPercent() > 0) {
+                    $article['unitPriceGross'] = $article['unitPriceGross'] * (1 + ($article['taxPercent'] / 100));
                 }
                 ################################################
 
@@ -79,12 +77,13 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
                     if ($taxConfig->priceIncludesTax($object->getStoreId())) {
                         $tax = $discount['tax'];
                     }
-                    $discount['unitPrice'] = ((-1 * $orderItem->getDiscountAmount()) - $tax) / $article['quantity'];
-                    $discount['totalPrice'] = (-1 * $orderItem->getDiscountAmount()) - $tax;
 
                     if (round($discount['tax'], 2) < 0) {
                         $discount['taxPercent'] = $article['taxPercent'];
                     }
+
+                    $discount['unitPriceGross'] = (-1 * $orderItem->getDiscountAmount()) / $article['quantity'];
+
                     $discount['discountId'] = $orderItem->getSku();
 
                     $articleDiscountAmount = $articleDiscountAmount + $orderItem->getDiscountAmount();
@@ -120,8 +119,7 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
             $article['articleNumber'] = 'SHIPPING';
             $article['articleName'] = $shippingDescription;
             $article['quantity'] = '1';
-            $article['unitPrice'] = $shippingObject->getShippingAmount();
-            $article['totalPrice'] = $shippingObject->getShippingAmount();
+            $article['unitPriceGross'] = $shippingObject->getShippingInclTax();
             $article['tax'] = $shippingObject->getShippingTaxAmount();
             $shippingTaxPercent = 0;
             if (($shippingObject->getShippingInclTax() - $shippingObject->getShippingAmount()) > 0) {
@@ -135,8 +133,7 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
                 $discount['articleNumber'] = 'SHIPPINGDISCOUNT';
                 $discount['articleName'] = 'Shipping - Discount';
                 $discount['quantity'] = 1;
-                $discount['unitPrice'] = -1 * $shippingObject->getShippingDiscountAmount();
-                $discount['totalPrice'] = -1 * $shippingObject->getShippingDiscountAmount();
+                $discount['unitPriceGross'] = -1 * $shippingObject->getShippingDiscountAmount();
                 $article['tax'] = $shippingObject->getShippingInclTax() - $shippingObject->getShippingAmount();
                 $discount['tax'] = -1 * ($article['tax'] - $shippingObject->getShippingTaxAmount());
                 $tax = 0;

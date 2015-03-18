@@ -2,18 +2,10 @@
 
 $deviceIdentActive = false;
 $storeId = Mage::app()->getStore()->getStoreId();
-$rpPaymentMethods = array("ratepay_directdebit", "ratepay_rate", "ratepay_rechnung");
 
-$test = $this->getHello();
-
-// needs at least one valid device ident config within an payment method
-foreach($rpPaymentMethods as $method) {
-    if ((bool) Mage::getStoreConfig("payment/" . $method . "/device_ident", $storeId)) {
-        $deviceIdentActive = true;
-    }
-    if (empty($deviceIdentId) && Mage::getStoreConfig("payment/" . $method . "/device_ident_id", $storeId)) {
-        $deviceIdentId = Mage::getStoreConfig("payment/" . $method . "/device_ident_id", $storeId);
-    }
+if (Mage::getStoreConfig("payment/ratepay_general/device_ident", $storeId) == "1") {
+    $deviceIdentActive = true;
+    $deviceIdentId = Mage::getStoreConfig("payment/ratepay_general/device_ident_id", $storeId);
 }
 
 if (!Mage::getSingleton('ratepaypayment/session')->getDeviceIdentToken() &&
