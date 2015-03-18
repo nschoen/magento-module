@@ -124,7 +124,7 @@ class RatePAY_Ratepaypayment_Block_Adminhtml_Bulk_Grid extends Mage_Adminhtml_Bl
         ));
         
         $this->getMassactionBlock()->addItem('invoice', array(
-             'label'=> Mage::helper('ratepaypayment')->__('Invoice'),
+             'label'=> Mage::helper('ratepaypayment')->__('Invoicing'),
              'url'  => $this->getUrl('*/*/massInvoice'),
              'confirm' => Mage::helper('ratepaypayment')->__('Are you sure?'),
         ));
