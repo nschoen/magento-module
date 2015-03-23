@@ -47,10 +47,10 @@ class RatePAY_Ratepaypayment_Block_Payment_Form_Abstract extends Mage_Payment_Bl
     {
         return $this->getMethod()->getConfigData("max_order_total", $this->getQuote()->getStoreId());
     }
-    
+
     public function getDueDays()
     {
-        return $this->getMethod()->getConfigData("due_days", $this->getQuote()->getStoreId());
+        return Mage::helper('ratepaypayment')->getRpConfigData($this->getQuote(), $this->_code, 'due_days');
     }
 
     /**

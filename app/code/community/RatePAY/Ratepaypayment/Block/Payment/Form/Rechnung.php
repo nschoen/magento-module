@@ -20,6 +20,8 @@
 
 class RatePAY_Ratepaypayment_Block_Payment_Form_Rechnung extends RatePAY_Ratepaypayment_Block_Payment_Form_Abstract
 {
+    protected $_code = 'ratepay_rechnung';
+
     /**
      * Construct
      */
@@ -28,5 +30,4 @@ class RatePAY_Ratepaypayment_Block_Payment_Form_Rechnung extends RatePAY_Ratepay
         parent::_construct();
         $this->setTemplate('ratepay/payment/form/rechnung.phtml');
     }
-
 }

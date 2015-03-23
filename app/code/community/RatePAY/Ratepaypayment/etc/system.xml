@@ -32,7 +32,7 @@
                     <show_in_store>1</show_in_store>
                     <frontend_class>complex</frontend_class>
                     <frontend_model>ratepaypayment/adminhtml_system_config_fieldset_mainsection</frontend_model>
-                    <comment>Initial Text Here</comment>
+                    <comment>Adminhtml-Initial Text</comment>
                     <fields>
                         <ratepay_general type="group" translate="label comment">
                             <label>General Settings</label>
@@ -50,7 +50,7 @@
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
-                                    <comment>Explanation Here</comment>
+                                    <comment>Adminhtml-Help-Whitelabel</comment>
                                 </whitelabel>
 
                                 <!--<address_normalization translate="label">
@@ -72,7 +72,7 @@
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
-                                    <comment>Explanation Here</comment>
+                                    <comment>Adminhtml-Help-Device Ident</comment>
                                 </device_ident>
 
                                 <device_ident_id translate="label">
@@ -82,7 +82,6 @@
                                     <show_in_default>1</show_in_default>
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
-                                    <comment>Explanation Here</comment>
                                 </device_ident_id>
 
                                 <ratepay_general_advanced type="group" translate="label">
@@ -103,7 +102,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Specific Categories</comment>
                                         </specificcategories>
 
                                         <specificshipping translate="label">
@@ -114,7 +113,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Specific Shipping</comment>
                                         </specificshipping>
 
                                         <hook_deliver translate="label">
@@ -125,7 +124,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Hook Deliver</comment>
                                         </hook_deliver>
 
                                         <hook_creditmemo translate="label">
@@ -136,7 +135,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Hook Creditmemo</comment>
                                         </hook_creditmemo>
 
                                         <hook_cancel translate="label">
@@ -147,7 +146,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Hook Cancel</comment>
                                         </hook_cancel>
 
                                         <deliver_event translate="label">
@@ -158,7 +157,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Confirmation Deliver Event</comment>
                                         </deliver_event>
 
                                         <specificstate_before translate="label">
@@ -169,7 +168,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Specific States Before Delivery</comment>
                                         </specificstate_before>
 
                                         <specificstate_after translate="label">
@@ -180,7 +179,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Specific States After Delivery</comment>
                                         </specificstate_after>
 
                                         <specificstatus_before translate="label">
@@ -191,7 +190,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Specific Statuses Before Delivery</comment>
                                         </specificstatus_before>
 
                                         <specificstatus_after translate="label">
@@ -202,7 +201,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Specific Statuses After Delivery</comment>
                                         </specificstatus_after>
                                     </fields>
                                 </ratepay_general_advanced>
@@ -264,7 +263,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -274,7 +273,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Help - Get Config</comment>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -285,7 +284,6 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
                                         </status>
 
                                         <title translate="label">
@@ -346,13 +344,14 @@
                                         </max_order_total>
 
                                         <due_days>
-                                            <label>Due days</label>
+                                            <label>Due Days</label>
                                             <frontend_type>text</frontend_type>
                                             <sort_order>100</sort_order>
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
                                             <validate>validate-number</validate>
+                                            <comment>Adminhtml-Help-Due Days</comment>
                                         </due_days>
 
                                         <logging translate="label">
@@ -373,7 +372,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -384,17 +383,17 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <payment_fee translate="label">
-                                            <label>RatePAY Payment Fee</label>
+                                            <label>Payment Fee</label>
                                             <frontend_type>text</frontend_type>
                                             <sort_order>150</sort_order>
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                            <comment>Explanation Here</comment>
+                                            <comment>Adminhtml-Help-Payment Fee</comment>
                                         </payment_fee>
 
                                         <sort_order translate="label">
@@ -423,7 +422,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
-                                                    <comment>Explanation Here</comment>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_rechnung_advanced_de>
@@ -475,6 +474,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -484,6 +484,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -561,6 +562,7 @@
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
                                             <validate>validate-number</validate>
+                                            <comment>Adminhtml-Help-Due Days</comment>
                                         </due_days>
 
                                         <logging translate="label">
@@ -581,6 +583,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -591,6 +594,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <payment_fee translate="label">
@@ -600,6 +604,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Payment Fee</comment>
                                         </payment_fee>
 
                                         <sort_order translate="label">
@@ -648,6 +653,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_directdebit_advanced_de>
@@ -698,6 +704,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -707,6 +714,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -810,6 +818,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -820,6 +829,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <payment_fee translate="label">
@@ -829,6 +839,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Payment Fee</comment>
                                         </payment_fee>
 
                                         <sort_order translate="label">
@@ -840,7 +851,7 @@
                                             <show_in_store>1</show_in_store>
                                         </sort_order>
 
-                                        <dynamic_due>
+                                        <!--<dynamic_due>
                                             <label>Enable dynamic due</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -848,7 +859,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
-                                        </dynamic_due>
+                                        </dynamic_due>-->
 
                                         <!--<bankdata_saving>
                                             <label>Save bank data</label>
@@ -887,6 +898,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_rate_advanced_de>
@@ -938,6 +950,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -947,6 +960,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -1005,6 +1019,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -1015,6 +1030,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <ratepay_ibs_advanced_de type="group" translate="label">
@@ -1034,6 +1050,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_ibs_advanced_de>
@@ -1097,6 +1114,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -1106,6 +1124,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -1183,6 +1202,7 @@
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
                                             <validate>validate-number</validate>
+                                            <comment>Adminhtml-Help-Due Days</comment>
                                         </due_days>
 
                                         <logging translate="label">
@@ -1203,6 +1223,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -1213,6 +1234,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <payment_fee translate="label">
@@ -1222,6 +1244,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Payment Fee</comment>
                                         </payment_fee>
 
                                         <sort_order translate="label">
@@ -1250,6 +1273,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_rechnung_advanced_at>
@@ -1301,6 +1325,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -1310,6 +1335,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -1387,6 +1413,7 @@
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
                                             <validate>validate-number</validate>
+                                            <comment>Adminhtml-Help-Due Days</comment>
                                         </due_days>
 
                                         <logging translate="label">
@@ -1407,6 +1434,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -1417,6 +1445,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <payment_fee translate="label">
@@ -1426,6 +1455,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Payment Fee</comment>
                                         </payment_fee>
 
                                         <sort_order translate="label">
@@ -1474,6 +1504,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_directdebit_advanced_at>
@@ -1524,6 +1555,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -1533,6 +1565,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -1636,6 +1669,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -1646,6 +1680,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <payment_fee translate="label">
@@ -1655,6 +1690,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Payment Fee</comment>
                                         </payment_fee>
 
                                         <sort_order translate="label">
@@ -1713,6 +1749,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_rate_advanced_at>
@@ -1764,6 +1801,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Sandbox</comment>
                                         </sandbox>
 
                                         <get_config translate="label">
@@ -1773,6 +1811,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-Get Config</comment>
                                         </get_config>
 
                                         <status translate="label">
@@ -1831,6 +1870,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-B2B</comment>
                                         </b2b>
 
                                         <delivery_address translate="label">
@@ -1841,6 +1881,7 @@
                                             <show_in_default>1</show_in_default>
                                             <show_in_website>1</show_in_website>
                                             <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
                                         <ratepay_ibs_advanced_at type="group" translate="label">
@@ -1860,6 +1901,7 @@
                                                     <show_in_default>1</show_in_default>
                                                     <show_in_website>1</show_in_website>
                                                     <show_in_store>1</show_in_store>
+                                                    <comment>Adminhtml-Help-Specific Customer Groups</comment>
                                                 </specificgroups>
                                             </fields>
                                         </ratepay_ibs_advanced_at>

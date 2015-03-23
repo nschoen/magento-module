@@ -256,7 +256,7 @@
                 <logging>1</logging>
                 <sandbox>1</sandbox>
                 <specificcurrency>EUR</specificcurrency>
-                <dynamic_due>1</dynamic_due>
+                <dynamic_due>0</dynamic_due>
                 <status>0</status>
                 <b2b>0</b2b>
                 <delivery_address>0</delivery_address>
@@ -275,7 +275,7 @@
                 <logging>1</logging>
                 <sandbox>1</sandbox>
                 <specificcurrency>EUR</specificcurrency>
-                <dynamic_due>1</dynamic_due>
+                <dynamic_due>0</dynamic_due>
                 <status>0</status>
                 <b2b>0</b2b>
                 <delivery_address>0</delivery_address>

@@ -20,6 +20,8 @@
 
 class RatePAY_Ratepaypayment_Block_Payment_Form_Rate extends RatePAY_Ratepaypayment_Block_Payment_Form_Abstract
 {
+    protected $_code = 'ratepay_rate';
+
     /**
      * Construct
      */
