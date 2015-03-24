@@ -228,7 +228,7 @@
                                     <fields>
 
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -439,7 +439,7 @@
                                     <sort_order>40</sort_order>
                                     <fields>
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -669,7 +669,7 @@
                                     <sort_order>50</sort_order>
                                     <fields>
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -913,9 +913,10 @@
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
                                     <sort_order>60</sort_order>
+                                    <comment>Adminhtml-Help-IBS</comment>
                                     <fields>
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -1033,6 +1034,17 @@
                                             <comment>Adminhtml-Help-ALA</comment>
                                         </delivery_address>
 
+                                        <notice translate="label">
+                                            <label>Delivery Address</label>
+                                            <frontend_type>label</frontend_type>
+                                            <frontend_model>ratepaypayment/adminhtml_system_config_form_label_on</frontend_model>
+                                            <sort_order>130</sort_order>
+                                            <show_in_default>1</show_in_default>
+                                            <show_in_website>1</show_in_website>
+                                            <show_in_store>1</show_in_store>
+                                            <comment>Adminhtml-Help-ALA</comment>
+                                        </notice>
+
                                         <ratepay_ibs_advanced_de type="group" translate="label">
                                             <label>Advanced Settings</label>
                                             <frontend_class>config-advanced</frontend_class>
@@ -1079,7 +1091,7 @@
                                     <fields>
 
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -1290,7 +1302,7 @@
                                     <sort_order>40</sort_order>
                                     <fields>
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -1520,7 +1532,7 @@
                                     <sort_order>50</sort_order>
                                     <fields>
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>
@@ -1764,9 +1776,10 @@
                                     <show_in_website>1</show_in_website>
                                     <show_in_store>1</show_in_store>
                                     <sort_order>60</sort_order>
+                                    <comment>Adminhtml-Help-IBS</comment>
                                     <fields>
                                         <active translate="label">
-                                            <label>Enabled</label>
+                                            <label>Method Enabled</label>
                                             <frontend_type>select</frontend_type>
                                             <source_model>adminhtml/system_config_source_yesno</source_model>
                                             <sort_order>10</sort_order>

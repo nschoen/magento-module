@@ -307,7 +307,6 @@ abstract class RatePAY_Ratepaypayment_Model_Method_Abstract extends Mage_Payment
                                                   $helper->getLoggingInfo($order));
             if (is_array($resultRequest) || $resultRequest == true) {
                 $payment->setAdditionalInformation('descriptor', $resultRequest['descriptor']);
-                Mage::getSingleton('ratepaypayment/session')->setDeviceIdentToken();
 
                 if ($this->getHelper()->getRpConfigData($order, $this->_code, 'address_normalization')) {
                     $billingAddress = $order->getBillingAddress();
@@ -355,6 +354,8 @@ abstract class RatePAY_Ratepaypayment_Model_Method_Abstract extends Mage_Payment
         Mage::getSingleton('ratepaypayment/session')->setTransactionShortId(null);
         Mage::getSingleton('ratepaypayment/session')->setAllowedProducts(false);
         Mage::getSingleton('ratepaypayment/session')->setPreviousQuote(null);
+
+        Mage::getSingleton('ratepaypayment/session')->setDeviceIdentToken();
     }
 
     protected function _abortBackToPayment($exception) {

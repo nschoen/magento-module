@@ -64,7 +64,7 @@ class RatePAY_Ratepaypayment_Model_Observer
             $previousOrder = Mage::getSingleton('ratepaypayment/session')->getPreviousQuote();
 
             if (is_array($previousOrder) && !$helper_query->relevantOrderChanges($currentOrder, $previousOrder)) {
-                //return;
+                return;
             }
 
             if (Mage::getSingleton('ratepaypayment/session')->getTransactionId()) {

@@ -56,14 +56,15 @@ class RatePAY_Ratepaypayment_Adminhtml_ProfilerequestController extends Mage_Adm
 
         $result = $client->callProfileRequest($headInfo, $loggingInfo);
 
+        $coreConfig = Mage::getModel('core/config');
+
         if (!is_array($result)) {
+            $coreConfig->saveConfig('payment/' . $method . '/status', 0);
             return Mage::helper('ratepaypayment')->__('Request Failed');
         }
 
         $merchantConfig = $result['merchant_config'];
         $installmentConfig = $result['installment_config'];
-
-        $coreConfig = Mage::getModel('core/config');
 
         if (strstr(strtolower($merchantConfig['country-code-billing']), $country) == false) {
             return Mage::helper('ratepaypayment')->__('Country is not supported by credentials');

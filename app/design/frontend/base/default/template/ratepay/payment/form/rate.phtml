@@ -587,7 +587,9 @@ $dob = $this->getDob();
             <div id="piRpHeader">
                 <div class="piRpFullWidth">
                     <h2 class="piRpH2"><?php echo $this->__('Calculate here your own rate'); ?></h2>
-                    <img class="piRpLogoImg" src="<?php echo $this->getSkinUrl('images/ratepay/Logo_Ratepay_Ratenrechner_01_Final_RGB_Farbe_01-small_.png'); ?>" width="141" height="43" alt="RatePAY Logo">
+                    <?php if (!$this->isWhitelabel()): ?>
+                        <img class="piRpLogoImg" src="<?php echo $this->getSkinUrl('images/ratepay/Logo_Ratepay_Ratenrechner_01_Final_RGB_Farbe_01-small_.png'); ?>" width="141" height="43" alt="RatePAY Logo">
+                    <?php endif; ?>
                 </div>
                 <br class="piRpClearFix" />
             </div>

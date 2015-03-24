@@ -62,7 +62,7 @@ class RatePAY_Ratepaypayment_Helper_Query extends Mage_Core_Helper_Abstract
     {
         $helper_data = Mage::helper('ratepaypayment/data');
 
-        if (!$helper_data->isDobSet($quote) || $helper_data->isValidAge($quote->getCustomer()->getDob()) != "success") {
+        if (!$helper_data->isDobSet($quote) || $helper_data->isValidAge($quote->getCustomerDob()) != "success") {
             return false;
         }
         if (!$helper_data->isPhoneSet($quote)) {
