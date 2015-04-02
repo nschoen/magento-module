@@ -251,9 +251,10 @@ class RatePAY_Ratepaypayment_Model_Observer
      */
 
     public function sendRatepayDeliverCallOnInvoice(Varien_Event_Observer $observer) {
-        $order = $observer->getEvent()->getInvoice()->getOrder();
+        $invoice = $observer->getEvent()->getInvoice();
+        $order = $invoice->getOrder();
         if ($this->getHelper()->getRpConfigData($order, 'ratepay_general', 'deliver_event', true, true) == "invoice") {
-            $this->sendRatepayDeliverCall($order, $observer->getEvent()->getInvoice());
+            $this->sendRatepayDeliverCall($order, $invoice);
         }
     }
 
@@ -264,9 +265,10 @@ class RatePAY_Ratepaypayment_Model_Observer
      */
 
     public function sendRatepayDeliverCallOnDelivery(Varien_Event_Observer $observer) {
-        $order = $observer->getEvent()->getShipment()->getOrder();
+        $shipment = $observer->getEvent()->getShipment();
+        $order = $shipment->getOrder();
         if ($this->getHelper()->getRpConfigData($order, 'ratepay_general', 'deliver_event', true, true) == "delivery") {
-            $this->sendRatepayDeliverCall($order, $observer->getEvent()->getShipment());
+            $this->sendRatepayDeliverCall($order, $shipment);
         }
     }
 
@@ -279,9 +281,12 @@ class RatePAY_Ratepaypayment_Model_Observer
     public function sendRatepayDeliverCall($order, $shippingOrInvoice)
     {
         $client = Mage::getSingleton('ratepaypayment/request');
-        $helper = Mage::helper('ratepaypayment/mapping');
-        if (Mage::helper('ratepaypayment/payment')->isRatepayPayment($order->getPayment()->getMethod()) && (bool) $this->getHelper()->getRpConfigData($order, 'ratepay_general', 'hook_deliver', true, true)) {
-            $result = $client->callConfirmationDeliver($helper->getRequestHead($order), $helper->getRequestBasket($order), $helper->getLoggingInfo($order));
+        $helper = Mage::helper('ratepaypayment');
+        $mappingHelper = Mage::helper('ratepaypayment/mapping');
+        $dataHelper = Mage::helper('ratepaypayment/data');
+        $paymentHelper = Mage::helper('ratepaypayment/payment');
+        if ($paymentHelper->isRatepayPayment($order->getPayment()->getMethod()) && (bool) $dataHelper->getRpConfigData($order, 'ratepay_general', 'hook_deliver', true, true)) {
+            $result = $client->callConfirmationDeliver($mappingHelper->getRequestHead($order), $mappingHelper->getRequestBasket($shippingOrInvoice), $mappingHelper->getLoggingInfo($order)); // , '', $paymentHelper->getAllInvoiceItems($order)
 
             if (!$result) {
                 Mage::throwException(Mage::helper('ratepaypayment')->__('Delivery was not successful.'));
@@ -289,8 +294,8 @@ class RatePAY_Ratepaypayment_Model_Observer
 
             Mage::helper('ratepaypayment/payment')->addNewTransaction($order->getPayment(), Mage_Sales_Model_Order_Payment_Transaction::TYPE_CAPTURE, $shippingOrInvoice, true, 'CONFIRMATION_DELIVER SEND (capture)');
 
-            $stateAfter = constant('Mage_Sales_Model_Order::' . $this->getHelper()->getRpConfigData($order, 'ratepay_general', 'specificstate_after', true, true));
-            $statusAfter = $this->getHelper()->getRpConfigData($order, 'ratepay_general', 'specificstatus_after', true, true);
+            $stateAfter = constant('Mage_Sales_Model_Order::' . $dataHelper->getRpConfigData($order, 'ratepay_general', 'specificstate_after', true, true));
+            $statusAfter = $dataHelper->getRpConfigData($order, 'ratepay_general', 'specificstatus_after', true, true);
 
             $order->setState($stateAfter, $statusAfter, 'success')->save();
         }
@@ -340,7 +345,7 @@ class RatePAY_Ratepaypayment_Model_Observer
                 $result = $client->callPaymentChange($headInfo, $customerInfo, $basketInfo, $paymentInfo, $loggingInfo);
                 $msg = Mage::helper('ratepaypayment')->__('Voucher was not successful.');
             } else {
-                $headInfo = $mappingHelper->getRequestHead($order, 'partial-return');
+                $headInfo = $mappingHelper->getRequestHead($order, 'return');
                 $result = $client->callPaymentChange($headInfo, $customerInfo, $basketInfo, $paymentInfo, $loggingInfo);
                 $msg = Mage::helper('ratepaypayment')->__('Return was not successful.');
             }
@@ -381,7 +386,7 @@ class RatePAY_Ratepaypayment_Model_Observer
             $availableProducts = $paymentHelper->getAvailableProducts($orderItems, $data);
 
             $basketInfo = $mappingHelper->getRequestBasket($order, $amount, $availableProducts);
-            $headInfo = $mappingHelper->getRequestHead($order, 'partial-cancellation');
+            $headInfo = $mappingHelper->getRequestHead($order, 'cancellation');
             $customerInfo = $mappingHelper->getRequestCustomer($order);
             $paymentInfo = $mappingHelper->getRequestPayment($order, $amount);
             $loggingInfo = $mappingHelper->getLoggingInfo($order);

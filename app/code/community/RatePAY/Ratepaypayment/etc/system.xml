@@ -277,7 +277,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -488,7 +488,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -718,7 +718,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -965,7 +965,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -1140,7 +1140,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -1351,7 +1351,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -1581,7 +1581,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>
@@ -1828,7 +1828,7 @@
                                         </get_config>
 
                                         <status translate="label">
-                                            <label>Status</label>
+                                            <label>Status RatePAY</label>
                                             <frontend_type>label</frontend_type>
                                             <frontend_model>ratepaypayment/adminhtml_system_config_form_label_active</frontend_model>
                                             <sort_order>45</sort_order>

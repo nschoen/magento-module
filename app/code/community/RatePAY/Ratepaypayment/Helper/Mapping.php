@@ -34,7 +34,8 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
         $objectItems = $object->getAllItems();
 
         foreach ($objectItems as $item) {
-            if ($item instanceof Mage_Sales_Model_Order_Item || $item instanceof Mage_Sales_Model_Quote_Item) {
+            if ($item instanceof Mage_Sales_Model_Order_Item ||
+                $item instanceof Mage_Sales_Model_Quote_Item) {
                 $orderItem = $item;
             } else {
                 $orderItem = Mage::getModel('sales/order_item')->load($item->getOrderItemId());
@@ -44,34 +45,27 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
 
             if ((($orderItem->getProductType() !== 'bundle') || ($orderItem->getProductType() === 'bundle' && $shopProduct->getPrice() > 0)) && $orderItem->getRowTotal() > 0) {
                 $article = array();
-                $article['articleNumber'] = $orderItem->getSku();
-                $article['articleName'] = $orderItem->getName();
-                $article['quantity'] = ($orderItem instanceof Mage_Sales_Model_Order_Item) ? $orderItem->getQtyOrdered() : $orderItem->getQty();
-                $article['unitPriceGross'] = $orderItem->getPriceInclTax();
-                $article['tax'] = $orderItem->getTaxAmount();
+                $article['articleNumber'] = $item->getSku();
+                $article['articleName'] = $item->getName();
+                $article['quantity'] = ($object instanceof Mage_Sales_Model_Order) ? $item->getQtyOrdered() : $item->getQty();
+                $article['unitPriceGross'] = ($object instanceof Mage_Sales_Model_Order_Shipment) ? $item->getPriceInclTax() : $item->getRowTotalInclTax();
+                $article['tax'] = $item->getTaxAmount();
                 $article['taxPercent'] = $orderItem->getTaxPercent();
 
                 if ($object instanceof Mage_Sales_Model_Quote) {
-                    $article['unitPriceNett'] = $orderItem->getCalculationPrice();
+                    $article['unitPriceNett'] = $item->getCalculationPrice();
                 } else {
-                    $article['unitPriceNett'] = $orderItem->getPrice(); // netto
+                    $article['unitPriceNett'] = $item->getPrice(); // netto
                 }
-
-                ################################################
-                // Handling in case of missing tax calculation
-                if ($article['unitPriceGross'] == $article['unitPriceNett'] && $orderItem->getTaxPercent() > 0) {
-                    $article['unitPriceGross'] = $article['unitPriceGross'] * (1 + ($article['taxPercent'] / 100));
-                }
-                ################################################
 
                 $article['discountId'] = '';
-                if ($orderItem->getDiscountAmount() > 0) {
+                if ($item->getDiscountAmount() > 0) {
                     $discount = array();
-                    $discount['articleNumber'] = 'DISCOUNT-' . $orderItem->getSk();
-                    $discount['articleName'] = 'DISCOUNT - ' . $orderItem->getName();
+                    $discount['articleNumber'] = 'DISCOUNT-' . $item->getSk();
+                    $discount['articleName'] = 'DISCOUNT - ' . $item->getName();
                     $discount['quantity'] = $article['quantity'];
-                    $article['tax'] = $orderItem->getRowTotalInclTax() - $orderItem->getRowTotal();
-                    $discount['tax'] = -1 * ($article['tax'] - $orderItem->getTaxAmount());
+                    $article['tax'] = $item->getRowTotalInclTax() - $item->getRowTotal();
+                    $discount['tax'] = -1 * ($article['tax'] - $item->getTaxAmount());
                     $tax = 0;
                     $taxConfig = Mage::getSingleton('tax/config');
                     if ($taxConfig->priceIncludesTax($object->getStoreId())) {
@@ -82,15 +76,15 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
                         $discount['taxPercent'] = $article['taxPercent'];
                     }
 
-                    $discount['unitPriceGross'] = (-1 * $orderItem->getDiscountAmount()) / $article['quantity'];
+                    $discount['unitPriceGross'] = (-1 * $item->getDiscountAmount()) / $article['quantity'];
 
-                    $discount['discountId'] = $orderItem->getSku();
+                    $discount['discountId'] = $item->getSku();
 
-                    $articleDiscountAmount = $articleDiscountAmount + $orderItem->getDiscountAmount();
+                    $articleDiscountAmount = $articleDiscountAmount + $item->getDiscountAmount();
                 }
 
                 $articles[] = $article;
-                if ($orderItem->getDiscountAmount() > 0) { // only for sort reason
+                if ($item->getDiscountAmount() > 0) { // only for sort reason
                     $articles[] = $discount;
                 }
             }
@@ -189,8 +183,10 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
         $tempVoucherItem['articleNumber'] = $articleNumber;
         $tempVoucherItem['quantity'] = 1;
         $tempVoucherItem['unitPrice'] = $amount;
+        $tempVoucherItem['unitPriceGross'] = $amount;
         $tempVoucherItem['totalPrice'] = $amount;
         $tempVoucherItem['tax'] = 0;
+        $tempVoucherItem['taxPercent'] = 0;
         $tempVoucherItem['discountId'] = 0;
 
         return $tempVoucherItem;
@@ -330,18 +326,6 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
     {
         $basket = array();
 
-        if (is_numeric($amount)) {
-            $basket['amount'] = $amount;
-        } else {
-            $basket['amount'] = $object->getGrandTotal();
-        }
-
-        // Ensure that the basket amout is never less than zero
-            // In certain cases (i.e. in case of maloperation) the amount can become < 0
-        if ($basket['amount'] < 0) {
-            $basket['amount'] = 0;
-        }
-
         if ($object instanceof Mage_Sales_Model_Order) {
             $basket['currency'] = $object->getOrderCurrencyCode();
         } else if ($object instanceof Mage_Sales_Model_Quote) {
@@ -361,7 +345,42 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
             $basket['items'] = array();
         }
 
+        if (is_numeric($amount)) {
+            $basket['amount'] = $amount;
+        } else {
+            if ($object->getGrandTotal() > 0) {
+                $basket['amount'] = $object->getGrandTotal();
+            } elseif (count($basket['items']) == 0) {
+                $basket['amount'] = 0;
+            } else {
+                $basket['amount'] = $this->getAmountByItems($basket['items']);
+            }
+
+        }
+
+        // Ensure that the basket amount is never less than zero
+        // In certain cases (i.e. in case of maloperation) the amount can become < 0
+        if ($basket['amount'] < 0) {
+            $basket['amount'] = 0;
+        }
+
         return $basket;
+    }
+
+    /**
+     * Totalizes the amount of all items
+     *
+     * @param array $items
+     * @return boolean
+     */
+    public function getAmountByItems($items) {
+        $amount = 0;
+
+        foreach ($items as $item) {
+            $amount += $item['unitPriceGross'];
+        }
+
+        return $amount;
     }
 
     /**

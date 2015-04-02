@@ -350,12 +350,12 @@ abstract class RatePAY_Ratepaypayment_Model_Method_Abstract extends Mage_Payment
         Mage::getSingleton('core/session')->setBankName(null);
 
         Mage::getSingleton('ratepaypayment/session')->setQueryActive(false);
-        Mage::getSingleton('ratepaypayment/session')->setTransactionId(null);
-        Mage::getSingleton('ratepaypayment/session')->setTransactionShortId(null);
+        Mage::getSingleton('ratepaypayment/session')->setTransactionId(false);
+        Mage::getSingleton('ratepaypayment/session')->setTransactionShortId(false);
         Mage::getSingleton('ratepaypayment/session')->setAllowedProducts(false);
         Mage::getSingleton('ratepaypayment/session')->setPreviousQuote(null);
 
-        Mage::getSingleton('ratepaypayment/session')->setDeviceIdentToken();
+        Mage::getSingleton('ratepaypayment/session')->setDeviceIdentToken(false);
     }
 
     protected function _abortBackToPayment($exception) {
