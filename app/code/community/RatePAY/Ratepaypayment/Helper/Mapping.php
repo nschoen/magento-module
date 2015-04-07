@@ -101,7 +101,7 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
 
         if ($shippingObject->getShippingAmount() > 0) {
 
-            if ($object instanceof Mage_Sales_Model_Order_Invoice || $object instanceof Mage_Sales_Model_Order_Creditmemo) {
+            if ($object instanceof Mage_Sales_Model_Order_Invoice || $object instanceof Mage_Sales_Model_Order_Shipment || $object instanceof Mage_Sales_Model_Order_Creditmemo) {
                 $shippingDiscountAmount = $shippingObject->getDiscountAmount() - $articleDiscountAmount;
                 $shippingDescription = $object->getOrder()->getShippingDescription();
             } else {

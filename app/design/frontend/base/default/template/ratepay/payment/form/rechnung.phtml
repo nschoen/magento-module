@@ -79,38 +79,38 @@
     <?php endif; ?>
 
     <?php if (!$this->isB2b()): ?>
-    <li id="dobForm_rechnung" style="display: <?php echo ($this->isDobSet()) ? "none" : "inline-block"; ?>">
-        <label for="month" class="required"><em>*</em><?php echo $this->__('Date of Birth') ?></label>
-        <div class="input-box customer-dob ratepayrechnungdob" id="">
-            <div class="dob-day">
-                <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Day') ?>" value="<?php if ($dob) echo substr($dob, 8, 2) ?>" name="payment[<?php echo $_code ?>_day]" id="<?php echo $_code ?>_day">
-                <label for="<?php echo $_code ?>_day">DD</label>
-            </div>
-            <div class="dob-month">
-                <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Month') ?>" value="<?php if ($dob) echo substr($dob, 5, 2) ?>" name="payment[<?php echo $_code ?>_month]" id="<?php echo $_code ?>_month">
-                <label for="<?php echo $_code ?>_month">MM</label>
-            </div>
-            <div class="dob-year">
-                <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Year') ?>" value="<?php if ($dob) echo substr($dob, 0, 4) ?>" name="payment[<?php echo $_code ?>_year]" id="<?php echo $_code ?>_year">
-                <label for="<?php echo $_code ?>_year">YYYY</label>
-            </div>
-            <div style="display:none;" class="dob-full">
-                <input type="hidden" name="<?php echo $_code ?>_dob" id="<?php echo $_code ?>_dob">
-            </div>
+        <li id="dobForm_rechnung" style="display: <?php echo ($this->isDobSet()) ? "none" : "inline-block"; ?>">
+            <label for="month" class="required"><em>*</em><?php echo $this->__('Date of Birth') ?></label>
+            <div class="input-box customer-dob ratepayrechnungdob" id="">
+                <div class="dob-day">
+                    <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Day') ?>" value="<?php if ($dob) echo substr($dob, 8, 2) ?>" name="payment[<?php echo $_code ?>_day]" id="<?php echo $_code ?>_day">
+                    <label for="<?php echo $_code ?>_day">DD</label>
+                </div>
+                <div class="dob-month">
+                    <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Month') ?>" value="<?php if ($dob) echo substr($dob, 5, 2) ?>" name="payment[<?php echo $_code ?>_month]" id="<?php echo $_code ?>_month">
+                    <label for="<?php echo $_code ?>_month">MM</label>
+                </div>
+                <div class="dob-year">
+                    <input type="text" class="input-text validate-custom" title="<?php echo $this->__('Year') ?>" value="<?php if ($dob) echo substr($dob, 0, 4) ?>" name="payment[<?php echo $_code ?>_year]" id="<?php echo $_code ?>_year">
+                    <label for="<?php echo $_code ?>_year">YYYY</label>
+                </div>
+                <div style="display:none;" class="dob-full">
+                    <input type="hidden" name="<?php echo $_code ?>_dob" id="<?php echo $_code ?>_dob">
+                </div>
 
-            <div style="display:none;" class="validation-advice"></div>
-        </div>
-        <script type="text/javascript">
-            //&lt;![CDATA[
-            var customer_dob = new Varien.RatepayDOB('.ratepayrechnungdob', true, '%d.%m.%y');
-            //]]&gt;
-        </script>
-    </li>
-    <li id="dobLabel_rechnung" style="display: <?php echo ($this->isDobSet()) ? "inline-block" : "none"; ?>">
-        <label><?php echo $this->__('Date of Birth') ?></label>
-        <div class="dob-day">
-            <label><?php echo substr($dob, 8, 2) . "." . substr($dob, 5, 2) . "." . substr($dob, 0, 4) ?>&nbsp;<a onclick="alterDob('rechnung')"><?php echo $this->__('Alter') ?></a></label>
-        </div>
-    </li>
+                <div style="display:none;" class="validation-advice"></div>
+            </div>
+            <script type="text/javascript">
+                //&lt;![CDATA[
+                var customer_dob = new Varien.RatepayDOB('.ratepayrechnungdob', true, '%d.%m.%y');
+                //]]&gt;
+            </script>
+        </li>
+        <li id="dobLabel_rechnung" style="display: <?php echo ($this->isDobSet()) ? "inline-block" : "none"; ?>">
+            <label><?php echo $this->__('Date of Birth') ?></label>
+            <div class="dob-day">
+                <label><?php echo substr($dob, 8, 2) . "." . substr($dob, 5, 2) . "." . substr($dob, 0, 4) ?>&nbsp;<a onclick="alterDob('rechnung')"><?php echo $this->__('Alter') ?></a></label>
+            </div>
+        </li>
     <?php endif; ?>
 </ul>
