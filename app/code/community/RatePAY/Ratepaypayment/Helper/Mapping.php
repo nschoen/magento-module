@@ -61,7 +61,7 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
                 $article['discountId'] = '';
                 if ($item->getDiscountAmount() > 0) {
                     $discount = array();
-                    $discount['articleNumber'] = 'DISCOUNT-' . $item->getSk();
+                    $discount['articleNumber'] = 'DISCOUNT-' . $item->getSku();
                     $discount['articleName'] = 'DISCOUNT - ' . $item->getName();
                     $discount['quantity'] = $article['quantity'];
                     $article['tax'] = $item->getRowTotalInclTax() - $item->getRowTotal();
