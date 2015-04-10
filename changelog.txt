@@ -1,6 +1,20 @@
 ***********************************************************
-**********| Version 3.0.0 - Released 2015-03-16 |**********
+**********| Version 3.0.0 - Released 2015-04-13 |**********
 ***********************************************************
+
+* changed namespace und module name
+* new backend configuration
+* configuration via PROFILE REQUEST; includes credential and country validation
+* persistent installment config (months allowed, min rate)
+* support of DE and AT credentials in same sub shop
+* product categories excludable
+* customer groups excludable
+* shipping methods excludable
+* module order processes (cancel, invoice/shipment, creditmemo) seperatly deactivatable
+* changed basket struktur (api v1.6)
+* installment plan on order summery page
+* improved IBS/PAYMENT QUERY
+* few smaller fixes and changes
 
 ***********************************************************
 **********| Version 2.5.1 - Released 2015-01-30 |**********

@@ -293,14 +293,14 @@ class RatePAY_Ratepaypayment_Helper_Mapping extends Mage_Core_Helper_Abstract
             $contacts['fax'] = $quoteOrOrder->getBillingAddress()->getFax();
         }
 
-        $billing['street'] = $quoteOrOrder->getBillingAddress()->getStreetFull();
+        $billing['street'] = preg_replace('~[\r\n]+~', ' ', $quoteOrOrder->getBillingAddress()->getStreetFull());
         $billing['zipCode'] = $quoteOrOrder->getBillingAddress()->getPostcode();
         $billing['city'] = $quoteOrOrder->getBillingAddress()->getCity();
         $billing['countryId'] = $quoteOrOrder->getBillingAddress()->getCountryId();
 
         $shipping['firstName'] = $quoteOrOrder->getShippingAddress()->getFirstname();
         $shipping['lastName'] = $quoteOrOrder->getShippingAddress()->getLastname();
-        $shipping['street'] = $quoteOrOrder->getShippingAddress()->getStreetFull();
+        $shipping['street'] = preg_replace('~[\r\n]+~', ' ', $quoteOrOrder->getShippingAddress()->getStreetFull());
         $shipping['zipCode'] = $quoteOrOrder->getShippingAddress()->getPostcode();
         $shipping['city'] = $quoteOrOrder->getShippingAddress()->getCity();
         $shipping['countryId'] = $quoteOrOrder->getShippingAddress()->getCountryId();

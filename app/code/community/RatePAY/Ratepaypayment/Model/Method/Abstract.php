@@ -164,16 +164,25 @@ abstract class RatePAY_Ratepaypayment_Model_Method_Abstract extends Mage_Payment
     /**
      * Check if payment method is available
      *
-     * 1) If a session variable is set, which indicates that the customer was declined by RatePAY within the PAYMENT_REQUEST
-     * 2) If customer has set an age and he is under 18 or above 100 years old.
-     * 3) If the basket amount is less then min order total amount or more than max order total amount
-     * 4) If shipping address doesnt equals billing address
+     * 1) If quote is not null
+     * 2) If a session variable is set, which indicates that the customer was declined by RatePAY within the PAYMENT_REQUEST
+     * 3) If customer has set an age and he is under 18 or above 100 years old.
+     * 4) If the basket amount is less then min order total amount or more than max order total amount
+     * 5) If shipping address doesnt equals billing address
+     * 6) If b2b is not allowed and billing address contains an company name
+     * 7) If the current customer belongs to a excluded customer group
+     * 8) If one of the cart items belongs to a excluded product category
+     * 9) If the selected shipping method is excluded
      *
      * @param Mage_Sales_Model_Quote $quote
      * @return boolean
      */
     public function isAvailable($quote = null)
     {
+        if (is_null($quote)) {
+            return false;
+        }
+
         $ratepayMethodHide = Mage::getSingleton('checkout/session')->getRatepayMethodHide();
         if ($ratepayMethodHide == true) {
             return false;
