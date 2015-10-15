@@ -354,9 +354,9 @@ class RatePAY_Ratepaypayment_Helper_Data extends Mage_Core_Helper_Abstract
     
     private function _setBankDataSession($data, $code)
     {
-        if($data[$code . '_iban']) {
+        if(isset($data[$code . '_iban']) && $data[$code . '_iban']) {
             Mage::getSingleton('core/session')->setIban($data[$code . '_iban']);
-            if($data[$code . '_bic']) {
+            if(isset($data[$code . '_bic']) && $data[$code . '_bic']) {
                 Mage::getSingleton('core/session')->setBic($data[$code . '_bic']);
             }
         } else {
@@ -617,4 +617,3 @@ class RatePAY_Ratepaypayment_Helper_Data extends Mage_Core_Helper_Abstract
         echo '</table>';
     }
 }
-
